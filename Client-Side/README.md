@@ -1,6 +1,6 @@
-# ClientSide
+# iBanque-ClientSide
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
 
 ## Development server
 
