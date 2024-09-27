@@ -1,0 +1,21 @@
+
+
+.card-header{
+  font-weight: bold;
+  text-align: center;
+}
+
+.my-2 {
+  width: 300px;
+}
+
+.lab {
+  color: black;
+  font-size: 16px;
+}
+
+.form-label{
+  color: black;
+  font-size: 16px;
+}
+

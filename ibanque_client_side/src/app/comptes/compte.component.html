@@ -1,0 +1,105 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col col-md-6">
+      <div class="card">
+        <div class="card-header">Compte</div>
+        <div class="card-body">
+          <form [formGroup]="compteFormGroup" (ngSubmit)="loadComptes()">
+            <div class="input-group">
+              <div class="input-group-text"><strong>Nº de Compte </strong></div>
+              <input  class="form-control" type="text" formControlName="compteId">
+              <button class="btn btn-primary "><i class="bi bi-search"></i></button>
+              <input class="btn btn-outline-secondary btn-sm" type="reset" value="Ré-initialiser" (click)="reset()">
+            </div>
+          </form>
+          <ng-container *ngIf="compteInfo">
+            <br/>
+            <div>
+              <label class="lab">Nº de Compte : </label>
+              <label class="input-group-text"><strong>{{compteInfo.accountId.toString().toUpperCase()}}</strong></label>
+            </div>
+            <br/>
+            <div>
+              <label class="lab">Propriétaire : </label>
+              <label class="input-group-text"><strong>{{compteInfo.owner}}</strong></label>
+            </div>
+            <br/>
+            <div>
+              <label class="lab">Solde : </label>
+              <label class="input-group-text"><strong>{{compteInfo.balance | number : '1.2-2'}} DH</strong></label>
+            </div>
+            <br/>
+            <div class="card-header"><strong>Historique des opérations réalisées:</strong>  </div> <br/>
+            <table class="table">
+              <thead >
+                <th class="text-center">Id</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Montant</th>
+              </thead>
+              <tbody *ngFor="let op of compteInfo.accountOperationDTOS">
+                <td class="text-center">{{op.id}}</td>
+                <td class="text-center">{{op.operationDate | date : 'dd / mm / yyyy |  hh:mm:ss'}}</td>
+                <td class="text-center">{{op.type}}</td>
+                <td class="text-center">{{op.amount | number : '1.2-2'}} DH</td>
+              </tbody>
+            </table>
+          </ng-container>
+      </div>
+      <ng-container *ngIf="compteInfo">
+        <div class="card-footer">
+          <ul class="nav nav-pills d-flex justify-content-center">
+            <li class="mx-1" *ngFor="let pageValue of [].constructor(compteInfo.totalPages); let page = index;">
+              <a [ngClass]="page == currentPage ? 'btn-info' : 'btn-outline-info'" (click)="goToPage(page)" class="btn btn-sm"> {{page+1}}</a>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
+    </div>
+    </div>
+
+    <div class="col col-md-6">
+      <div>
+        <div class="card" *ngIf="compteInfo">
+          <div class="card-header">Operations</div>
+          {{operationFormGroup.value | json}}
+          <div class="card-body mx-xxl-5">
+            <form [formGroup]="operationFormGroup" (ngSubmit)="handleAccountOperation()" method="post">
+              <div class="d-flex justify-content-between">
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label text-black" for="debit">DEBIT</label>
+                  <input class="form-check-input" type="radio" formControlName="operationType" value="DEBIT" id="debit">
+                </div>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label text-black" for="credit">CREDIT</label>
+                  <input class="form-check-input" type="radio" formControlName="operationType" value="CREDIT" id="credit">
+                </div>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label text-black" for="transfer">TRANSFER</label>
+                  <input class="form-check-input" type="radio" formControlName="operationType" value="TRANSFER" id="transfer">
+                </div>
+              </div>
+              <hr>
+              <div class="my-2" *ngIf="operationFormGroup.value!.operationType == 'TRANSFER'">
+                <label class="form-label" > Nº de Compte du destinataire : </label>
+                <input class="form-control" type="text" formControlName="accountDestination">
+              </div>
+              <div class="my-2">
+                <label class="form-label"> Montant : </label>
+                <input class="form-control" type="number" formControlName="amount">
+              </div>
+              <div class="my-2">
+                <label class="form-label"> Description : </label>
+                <input class="form-control" type="text" formControlName="desc">
+              </div>
+              <hr>
+              <input type="submit" class="btn btn-info btn-sm me-5" value="Appliquer">
+              <input type="reset" class="btn btn-outline-secondary btn-sm">
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
