@@ -1,0 +1,10 @@
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+  --dark-color: #343435;
+  --text-color: aliceblue;
+}
+
+*{
+  font-family: 'Cairo', sans-serif;
+}
