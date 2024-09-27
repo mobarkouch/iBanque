@@ -1,0 +1,21 @@
+.container {
+  width: 800px;
+}
+.card-header {
+  text-align: center;
+  font-weight: bold;
+}
+
+.text-bg-danger{
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.container .card-body .container{
+  width: 600px;
+}
+
+
+
+

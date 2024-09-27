@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">Liste des clients</div>
+    <div *ngIf="messageError" class="text-bg-danger">
+      {{messageError}}
+    </div>
+    <div class="card-body">
+      <div class="container-fluid ">
+        <form [formGroup]="searchFormGroup" (ngSubmit)="loadClients()">
+          <div class="input-group  ">
+            <label class="input-group-text">Nom du client : </label>
+            <input class="form-control" type="text" formControlName="keyword" >
+            <button class="btn btn-primary btn-sm"><i class="bi bi-search"></i>  Recherche</button>
+            <input class="btn btn-outline-secondary btn-sm" type="reset" value="Ré-initialiser la recherche" (click)="reset()">
+          </div>
+        </form>
+      </div>
+      <table class="table  align-middle table-striped table-hover">
+        <thead>
+        <tr>
+          <th class="text-center">#</th>
+          <th class="text-center">Nom</th>
+          <th class="text-center">E-mail</th>
+          <th class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="clients">
+        <tr *ngFor="let client of clients">
+          <th class="text-center" scope="row" >{{client.id}}</th>
+          <td class="text-center">{{client.name}}</td>
+          <td class="text-center">{{client.email}}</td>
+          <td class="text-center">
+            <button class="btn btn-outline-info btn-sm mx-2" (click)="upDate(client)"><i class="bi bi-pen"></i></button>
+            <button class="btn btn-outline-danger btn-sm mx-2" (click)="delete(client.id)"><i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
