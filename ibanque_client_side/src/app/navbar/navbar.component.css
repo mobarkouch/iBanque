@@ -1,0 +1,26 @@
+.navbar {
+  background-color: var(--dark-color);
+}
+
+.navbar .navbar-nav .nav-link {
+  color: var(--text-color);
+}
+.navbar-brand{
+  color : var(--text-color);
+}
+
+.dropdown-menu {
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
+}
+
+.dropdown-item {
+  color: #666;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: #000; /* or any other color you prefer for hover/active state */
+}
+
+
