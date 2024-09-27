@@ -1,0 +1,17 @@
+.container-sm {
+  width: 800px;
+}
+
+.card-header{
+  font-weight: bold;
+  text-align: center;
+}
+
+.my-2 {
+  width: 300px;
+}
+
+.form-label{
+  color: grey;
+  font-weight: bold;
+}
